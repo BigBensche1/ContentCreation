@@ -1,0 +1,16 @@
+{
+  "example_instagram_account": {
+    "platform": "instagram",
+    "niche": "travel & adventure",
+    "hashtags": "#travel #wanderlust #explore #adventure #photooftheday",
+    "weekly_slot_share": 9,
+    "credentials_note": "Set IG_ACCESS_TOKEN and IG_BUSINESS_ACCOUNT_ID in .env to enable auto-publish (not yet configured)."
+  },
+  "example_youtube_channel": {
+    "platform": "youtube",
+    "niche": "tech gadget reviews",
+    "hashtags": "#shorts #tech #reviews",
+    "weekly_slot_share": 5,
+    "credentials_note": "YouTube Data API OAuth (credentials.json/token.json scope) not yet configured for publish."
+  }
+}
