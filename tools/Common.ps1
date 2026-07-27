@@ -6,7 +6,7 @@ Requires PowerShell 7+ (uses RSA.ImportFromPem for Google service-account JWT si
 #>
 
 function Import-DotEnv {
-    param([string]$Path = (Join-Path $PSScriptRoot "..\.env"))
+    param([string]$Path = (Join-Path $PSScriptRoot ".." ".env"))
     if (-not (Test-Path $Path)) { return }
     Get-Content $Path | ForEach-Object {
         $line = $_.Trim()
@@ -41,7 +41,7 @@ function ConvertTo-ColumnLetter {
 
 function Get-ServiceAccountKeyPath {
     Import-DotEnv
-    $path = if ($env:GOOGLE_SERVICE_ACCOUNT_KEY_PATH) { $env:GOOGLE_SERVICE_ACCOUNT_KEY_PATH } else { Join-Path $PSScriptRoot "..\service-account.json" }
+    $path = if ($env:GOOGLE_SERVICE_ACCOUNT_KEY_PATH) { $env:GOOGLE_SERVICE_ACCOUNT_KEY_PATH } else { Join-Path $PSScriptRoot ".." "service-account.json" }
     if (-not (Test-Path $path)) {
         throw "Service account key not found at '$path'. Create one in Google Cloud Console (IAM & Admin > Service Accounts > Keys > Add key > JSON), save it there (or point GOOGLE_SERVICE_ACCOUNT_KEY_PATH at it in .env), and share the target Google Sheet with its client_email as an Editor."
     }

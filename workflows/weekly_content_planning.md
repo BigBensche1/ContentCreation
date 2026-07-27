@@ -4,9 +4,9 @@
 Keep the Schedule sheet topped up automatically so the user doesn't have to hand-author every topic. Once a week, research what's currently trending for each account's niche and append new `Pending` rows until each account reaches its target standing pool of open posts.
 
 ## Trigger
-Weekly (target: Sundays) via an Anthropic `/schedule` cloud agent connected to this project's GitHub repo. Until that's wired up, run this manually by asking the agent to "run the weekly content planning."
+Weekly (Sundays) via an Anthropic `/schedule` cloud agent connected to this project's GitHub repo.
 
-Uses the same `tools/*.ps1` (PowerShell 7+ required) as `workflows/social_media_post_pipeline.md`.
+Uses the same `tools/*.ps1` (PowerShell 7+ required) as `workflows/social_media_post_pipeline.md`, including the same `cloud-secrets/` bootstrap step (copy `gcp-service-account.json` → `service-account.json` and `schedule.env` → `.env` before calling any tool).
 
 ## Inputs
 - Google Sheet (`Schedule` tab) — same sheet and schema as the per-post pipeline.

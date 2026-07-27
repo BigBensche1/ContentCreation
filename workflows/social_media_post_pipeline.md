@@ -4,10 +4,16 @@
 For every due post in the Schedule sheet, generate an on-brand image and video via Higgsfield, gate the image through an authenticity review agent before spending credits on video, attach an appealing title and the account's steady hashtag set, and email the result to the user for manual approval before anything goes live.
 
 ## Trigger
-Invoked periodically (target cadence: every 30-60 minutes) via an Anthropic `/schedule` cloud agent connected to this project's GitHub repo. Until that's wired up, run this manually by asking the agent to "process due posts."
+Invoked periodically (target cadence: hourly — the `/schedule` cloud agent's minimum interval) via an Anthropic `/schedule` cloud agent connected to this project's GitHub repo.
 
 ## Requirements
-All `tools/*.ps1` scripts require **PowerShell 7+** (`pwsh`), not Windows PowerShell 5.1 — Google service-account JWT signing depends on `RSA.ImportFromPem`, which only exists on modern PowerShell. This also matches whatever the `/schedule` cloud agent's sandbox needs, since Windows PowerShell 5.1 doesn't exist outside Windows.
+All `tools/*.ps1` scripts require **PowerShell 7+** (`pwsh`), not Windows PowerShell 5.1 — Google service-account JWT signing depends on `RSA.ImportFromPem`, which only exists on modern PowerShell. This also matches what the `/schedule` cloud agent's (Linux) sandbox needs, since Windows PowerShell 5.1 doesn't exist outside Windows.
+
+**First step of every scheduled run**: the cloud sandbox gets a fresh git checkout with no `.env`/`service-account.json` (both gitignored). Bootstrap them from the committed `cloud-secrets/` bundle before calling any tool:
+```
+Copy-Item cloud-secrets/gcp-service-account.json service-account.json -Force
+Copy-Item cloud-secrets/schedule.env .env -Force
+```
 
 ## Inputs
 - Google Sheet (`Schedule` tab) — see schema below. Sheet ID comes from `GOOGLE_SHEET_ID` in `.env`.
