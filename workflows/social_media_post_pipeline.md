@@ -12,7 +12,7 @@ All `tools/*.ps1` scripts require **PowerShell 7+** (`pwsh`), not Windows PowerS
 ## Inputs
 - Google Sheet (`Schedule` tab) — see schema below. Sheet ID comes from `GOOGLE_SHEET_ID` in `.env`.
 - `config/accounts.json` — per-account `platform`, `niche`, `hashtags` (steady set), `weekly_slot_share`, `credentials_note`.
-- `.env` — `GOOGLE_SHEET_ID`; SMTP settings for the review email; (future) `IG_ACCESS_TOKEN` / `IG_BUSINESS_ACCOUNT_ID`.
+- `.env` — `GOOGLE_SHEET_ID`; `RESEND_API_KEY`/`RESEND_FROM`/`REVIEW_EMAIL_TO` for the review email (Resend, not SMTP — Microsoft has hard-disabled basic SMTP AUTH for personal Outlook accounts); (future) `IG_ACCESS_TOKEN` / `IG_BUSINESS_ACCOUNT_ID`.
 - `service-account.json` at the project root — Google service account key (see `tools/Common.ps1`'s `Get-ServiceAccountKeyPath`). No browser consent flow: the Sheet is simply shared with the key's `client_email` as an Editor.
 
 ## Sheet schema (`Schedule` tab, columns A:J)
