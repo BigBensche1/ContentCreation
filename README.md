@@ -1,2 +1,2 @@
-# ContentCreation
-This development is responsible for the reaccuring creation of automated sozial media content creation
+cd "C:\Users\assbh\OneDrive\Agent dev - claude\Project to create Sozial media input"
+git push origin main
